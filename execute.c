@@ -7,17 +7,19 @@ void execute(char **argv)
 {
 	pid_t pid;
 
-	if (argv[0] == NULL)
+		if (argv[0] == NULL)
 	{
 		free(argv);
 		return;
 	}
+
 	pid = fork();
 	if (pid == 0)
 	{
 		if (execve(argv[0], argv, NULL) == -1)
 		{
 			perror("Error");
+			free(argv);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -25,5 +27,6 @@ void execute(char **argv)
 	{
 		wait(NULL);
 	}
+
 	free(argv);
 }

@@ -13,6 +13,7 @@ char **tokenize(char *line)
 
 	copy = strdup(line);
 	token = strtok(copy, "\n \t");
+
 	while (token)
 	{
 		count++;
